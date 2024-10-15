@@ -6,7 +6,6 @@
     xmlns:vizFeeds="sap.viz.ui5.controls.common.feeds"
     displayBlock="true"
     xmlns:viz.data="sap.viz.ui5.data"
-    
     xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
     xmlns:chart="sap.suite.ui.commons"
     xmlns="sap.m"
@@ -141,7 +140,7 @@
                         <Button
                             id="_IDGenButton"
                             icon="sap-icon://synchronize"
-                            press="onRefresh"
+                            press="formatStatusColor"
                         />
                         <Button
                             id="_IDGenButton1"
@@ -246,15 +245,26 @@
                             value="{KWMENG}"
                             textAlign="Center"
                         />
-                        <Text id="_IDGenTitle2"  class="ddvsdvsdvds" text="{Success}"  ></Text>
-                         <Text id="_IDGenTitle3"  text="{Failure}" ></Text>
-                          <Text id="_IDGenTitle4"  text="{Status}" ></Text>
+                        <Text
+                            id="_IDGenTitle2"
+                            class="statusSuccess"
+                            text="{Success}"
+                        />
+                        <Text
+                            id="_IDGenTitle3"
+                            class="statusReject"
+                            text="{Failure}"
+                        />
+                        <Text
+                            id="_IDGenTitle4"
+                            text="{Status}"
+                        />
+                    
                     </ColumnListItem>
                 </items>
             </Table>
         </Panel>
 
-     
         <Panel
             id="_IDGenPanel3"
             expand="true"
@@ -263,73 +273,100 @@
             expanded="true"
             headerText="Analysis"
         >
-        <viz:VizFrame id="_IDGenVizFrame1"
-    width="100%"
-    height="480px"
-    uiConfig="{applicationSet:'fiori'}"
-             vizProperties="{
+            <viz:VizFrame
+                id="_IDGenVizFrame1"
+                width="100%"
+                height="480px"
+                uiConfig="{applicationSet:'fiori'}"
+                vizProperties="{
     
                     title : {text:''}
                 }"
-    vizType="column">
+                vizType="column"
+            >
+                <!-- Correct Dataset -->
+                <viz:dataset>
+                    <viz.data:FlattenedDataset
+                        id="_IDGenFlattenedDataset"
+                        data="{/data}"
+                    >
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition
+                                id="_IDGenDimensionDefinition"
+                                name="Material Description"
+                                value="{MATNR}"
+                            />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition
+                                id="_IDGenMeasureDefinition"
+                                name="Material"
+                                value="{ZMATNR}"
+                            />
+                            <viz.data:MeasureDefinition
+                                id="_IDGenMeasureDefinition2"
+                                name="Customer"
+                                value="{ZKUNNR}"
+                            />
+                            <viz.data:MeasureDefinition
+                                id="_IDGenMeasureDefinition3"
+                                name="Sales Organisation"
+                                value="{ZVKORG}"
+                            />
+                            <viz.data:MeasureDefinition
+                                id="_IDGenMeasureDefinition4"
+                                name="Price"
+                                value="{NETWR}"
+                            />
+                            <viz.data:MeasureDefinition
+                                id="_IDGenMeasureDefzzxinition4"
+                                name="Plant"
+                                value="{ZWERKS}"
+                            />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+                <viz:feeds>
+                    <viz.feeds:FeedItem
+                        id="valueAxisFeed1"
+                        uid="valueAxis"
+                        type="Measure"
+                        values="Material"
+                    />
 
-    <!-- Correct Dataset -->
-    <viz:dataset>
-        <viz.data:FlattenedDataset id="_IDGenFlattenedDataset" data="{/data}">
-            <viz.data:dimensions>
-                <viz.data:DimensionDefinition id="_IDGenDimensionDefinition" name="Material Description" value="{MATNR}" />
-            </viz.data:dimensions>
-            <viz.data:measures>
-                <viz.data:MeasureDefinition id="_IDGenMeasureDefinition" name="Material" value="{ZMATNR}" />
-                <viz.data:MeasureDefinition id="_IDGenMeasureDefinition2" name="Customer" value="{ZKUNNR}" />
-                 <viz.data:MeasureDefinition id="_IDGenMeasureDefinition3" name="Sales Organisation" value="{ZVKORG}" />
-                  <viz.data:MeasureDefinition id="_IDGenMeasureDefinition4" name="Price" value="{NETWR}" />
-                   <viz.data:MeasureDefinition id="_IDGenMeasureDefzzxinition4" name="Plant" value="{ZWERKS}" />
-                  
-            </viz.data:measures>
-        </viz.data:FlattenedDataset>
-    </viz:dataset>
-    <viz:feeds>
-       
-        <viz.feeds:FeedItem
-            id="valueAxisFeed1"
-            uid="valueAxis"
-            type="Measure"
-            values="Material" />
-        
+                    <viz.feeds:FeedItem
+                        id="valueAxisFeed2"
+                        uid="valueAxis"
+                        type="Measure"
+                        values="Customer"
+                    />
+                    <viz.feeds:FeedItem
+                        id="valueAxisFefded2"
+                        uid="valueAxis"
+                        type="Measure"
+                        values="Sales Organisation"
+                    />
+                    <viz.feeds:FeedItem
+                        id="valueAxisdcssFefded2"
+                        uid="valueAxis"
+                        type="Measure"
+                        values="Price"
+                    />
+                    <viz.feeds:FeedItem
+                        id="valueAxisdcsaaasFefded2"
+                        uid="valueAxis"
+                        type="Measure"
+                        values="Plant"
+                    />
 
-        <viz.feeds:FeedItem
-            id="valueAxisFeed2"
-            uid="valueAxis"
-            type="Measure"
-            values="Customer" />
-                <viz.feeds:FeedItem
-            id="valueAxisFefded2"
-            uid="valueAxis"
-            type="Measure"
-            values="Sales Organisation" />    
-                        <viz.feeds:FeedItem
-            id="valueAxisdcssFefded2"
-            uid="valueAxis"
-            type="Measure"
-            values="Price" />    
-                                <viz.feeds:FeedItem
-            id="valueAxisdcsaaasFefded2"
-            uid="valueAxis"
-            type="Measure"
-            values="Plant" /> 
-
-        <viz.feeds:FeedItem
-            
-            id="categoryAxisFeed"
-            uid="categoryAxis"
-            type="Dimension"
-            values="Material Description" />
-    </viz:feeds>
-
-</viz:VizFrame>
-
-                 
+                    <viz.feeds:FeedItem
+                        id="categoryAxisFeed"
+                        uid="categoryAxis"
+                        type="Dimension"
+                        values="Material Description"
+                    />
+                </viz:feeds>
+            </viz:VizFrame>
         </Panel>
     </Page>
 </mvc:View>

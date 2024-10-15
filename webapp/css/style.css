@@ -230,3 +230,11 @@ div#application-Object-DISPLAY-component---View1--_IDGenTitle12{
 div#application-Object-DISPLAY-component---View1--_IDGenPanel2 {
     padding: 20px;
 }
+
+.statusSuccess {
+    color: green;
+}
+
+.statusReject {
+    color: red;
+}

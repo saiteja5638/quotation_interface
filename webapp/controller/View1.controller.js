@@ -28,6 +28,21 @@ sap.ui.define([
                 that._SetHeaderData()
                 that.onRefresh()
             },
+            formatStatusColor: function () {
+
+                let get_table_items = that.byId("_IDGenTable").getItems()
+                get_table_items.forEach(i=>{
+                    if (i.getCells()[6].getText()=="Rejected") {
+                        i.getCells()[6].addStyleClass("statusReject")
+                        
+                    } else {
+                        i.getCells()[6].addStyleClass("statusSuccess")
+                    }
+                    
+                })
+                
+         
+            },
             _setIceCreamModel: function () {
 
                 var oData = {
@@ -113,6 +128,7 @@ sap.ui.define([
                                         })
                 
                                         that.byId("_IDGenTable").setModel(oModel)
+                                        that.formatStatusColor()
                                         that.onUpdatePieChart(that.PredicationResponse)
                 
                                     }
@@ -180,6 +196,7 @@ sap.ui.define([
 
             },
             onSubmit: function () {
+                that.byId("_IDGenTable").setBusy(true)
                 that.byId("_IDGenTable").getSelectedItems().forEach((i,index) =>{
 
                     that.getOwnerComponent().getModel().callFunction("/createQuotation", {
@@ -207,6 +224,9 @@ sap.ui.define([
                                 })
         
                                 that.byId("_IDGenTable").setModel(oModel)
+                                that.formatStatusColor()
+                                that.onUpdatePieChart(that.PredicationResponse)
+                                that.byId("_IDGenTable").setBusy(false)
                             }
                         },
                         error: function (oError) {
