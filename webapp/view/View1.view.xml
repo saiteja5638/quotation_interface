@@ -155,7 +155,7 @@
                             text="Export"
                             type="Emphasized"
                             press="onUpdateValues"
-                            icon="sap-icon://download"
+                            icon="sap-icon://arrow-top"
                         />
                     </Toolbar>
                 </infoToolbar>
