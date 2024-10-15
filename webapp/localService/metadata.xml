@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="Quotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="QUOT_HEADER_DATA" EntityType="Quotation.QUOT_HEADER_DATA"/>
+                <EntitySet Name="QUOT_ITEM_DATA" EntityType="Quotation.QUOT_ITEM_DATA"/>
+                <EntitySet Name="DATA_CARR" EntityType="Quotation.DATA_CARR"/>
+                <EntitySet Name="Authors" EntityType="Quotation.Authors"/>
+                <EntitySet Name="Books" EntityType="Quotation.Books"/>
+                <EntitySet Name="Publishers" EntityType="Quotation.Publishers"/>
+                <EntitySet Name="WorkflowTaskCollection" EntityType="Quotation.WorkflowTaskCollection"/>
+                <EntitySet Name="HeaderDetails" EntityType="Quotation.HeaderDetails"/>
+                <EntitySet Name="ItemDetails" EntityType="Quotation.ItemDetails"/>
+                <EntitySet Name="Notes" EntityType="Quotation.Notes"/>
+                <EntitySet Name="Attachments" EntityType="Quotation.Attachments"/>
+                <EntitySet Name="Limits" EntityType="Quotation.Limits"/>
+                <AssociationSet Name="Authors_books" Association="Quotation.Authors_books">
+                    <End Role="Authors" EntitySet="Authors"/>
+                    <End Role="Books" EntitySet="Books"/>
+                </AssociationSet>
+                <AssociationSet Name="Books_author" Association="Quotation.Books_author">
+                    <End Role="Books" EntitySet="Books"/>
+                    <End Role="Authors" EntitySet="Authors"/>
+                </AssociationSet>
+                <AssociationSet Name="Books_publisher" Association="Quotation.Books_publisher">
+                    <End Role="Books" EntitySet="Books"/>
+                    <End Role="Publishers" EntitySet="Publishers"/>
+                </AssociationSet>
+                <AssociationSet Name="Publishers_books" Association="Quotation.Publishers_books">
+                    <End Role="Publishers" EntitySet="Publishers"/>
+                    <End Role="Books" EntitySet="Books"/>
+                </AssociationSet>
+                <AssociationSet Name="WorkflowTaskCollection_headerDetails" Association="Quotation.WorkflowTaskCollection_headerDetails">
+                    <End Role="WorkflowTaskCollection" EntitySet="WorkflowTaskCollection"/>
+                    <End Role="HeaderDetails" EntitySet="HeaderDetails"/>
+                </AssociationSet>
+                <AssociationSet Name="HeaderDetails_itemDetails" Association="Quotation.HeaderDetails_itemDetails">
+                    <End Role="HeaderDetails" EntitySet="HeaderDetails"/>
+                    <End Role="ItemDetails" EntitySet="ItemDetails"/>
+                </AssociationSet>
+                <AssociationSet Name="HeaderDetails_notes" Association="Quotation.HeaderDetails_notes">
+                    <End Role="HeaderDetails" EntitySet="HeaderDetails"/>
+                    <End Role="Notes" EntitySet="Notes"/>
+                </AssociationSet>
+                <AssociationSet Name="HeaderDetails_attachments" Association="Quotation.HeaderDetails_attachments">
+                    <End Role="HeaderDetails" EntitySet="HeaderDetails"/>
+                    <End Role="Attachments" EntitySet="Attachments"/>
+                </AssociationSet>
+                <AssociationSet Name="ItemDetails_limits" Association="Quotation.ItemDetails_limits">
+                    <End Role="ItemDetails" EntitySet="ItemDetails"/>
+                    <End Role="Limits" EntitySet="Limits"/>
+                </AssociationSet>
+            </EntityContainer>
+            <EntityType Name="QUOT_HEADER_DATA">
+                <Key>
+                    <PropertyRef Name="ZQUOTATION"/>
+                    <PropertyRef Name="VBELN"/>
+                </Key>
+                <Property Name="ZQUOTATION" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="VBELN" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="KUNNR" Type="Edm.String" MaxLength="10"/>
+                <Property Name="NAME1" Type="Edm.String" MaxLength="35"/>
+                <Property Name="REGIO" Type="Edm.String" MaxLength="3"/>
+                <Property Name="ORT01" Type="Edm.String" MaxLength="35"/>
+                <Property Name="STATUS" Type="Edm.String" MaxLength="1"/>
+                <Property Name="AUFSD" Type="Edm.String" MaxLength="2"/>
+                <Property Name="VKORG" Type="Edm.String" MaxLength="4"/>
+                <Property Name="VKBUR" Type="Edm.String" MaxLength="4"/>
+                <Property Name="ERDAT" Type="Edm.String"/>
+                <Property Name="ERNAM" Type="Edm.String" MaxLength="12"/>
+            </EntityType>
+            <EntityType Name="QUOT_ITEM_DATA">
+                <Key>
+                    <PropertyRef Name="ZQUOTATION"/>
+                    <PropertyRef Name="VBELN"/>
+                    <PropertyRef Name="POSNR"/>
+                </Key>
+                <Property Name="ZQUOTATION" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="VBELN" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="POSNR" Type="Edm.String" MaxLength="6" Nullable="false"/>
+                <Property Name="MATNR" Type="Edm.String" MaxLength="40"/>
+                <Property Name="MAKTX" Type="Edm.String" MaxLength="40"/>
+                <Property Name="KWMENG" Type="Edm.Decimal" Scale="3" Precision="10"/>
+                <Property Name="KBMENG" Type="Edm.Decimal" Scale="3" Precision="10"/>
+                <Property Name="NETWR" Type="Edm.Decimal" Scale="2" Precision="10"/>
+                <Property Name="ZSTATUS" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="DATA_CARR">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
+                <Property Name="SERV" Type="Edm.String"/>
+                <Property Name="DATA" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Authors">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="100"/>
+                <Property Name="country" Type="Edm.String" MaxLength="50"/>
+                <NavigationProperty Name="books" Relationship="Quotation.Authors_books" FromRole="Authors" ToRole="Books"/>
+            </EntityType>
+            <EntityType Name="Books">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="title" Type="Edm.String" MaxLength="150"/>
+                <Property Name="genre" Type="Edm.String" MaxLength="50"/>
+                <Property Name="publicationYear" Type="Edm.Int32"/>
+                <Property Name="authorID" Type="Edm.Guid"/>
+                <Property Name="publisherID" Type="Edm.Guid"/>
+                <NavigationProperty Name="author" Relationship="Quotation.Books_author" FromRole="Books" ToRole="Authors"/>
+                <NavigationProperty Name="publisher" Relationship="Quotation.Books_publisher" FromRole="Books" ToRole="Publishers"/>
+            </EntityType>
+            <EntityType Name="Publishers">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="100"/>
+                <Property Name="address" Type="Edm.String" MaxLength="150"/>
+                <NavigationProperty Name="books" Relationship="Quotation.Publishers_books" FromRole="Publishers" ToRole="Books"/>
+            </EntityType>
+            <EntityType Name="WorkflowTaskCollection">
+                <Key>
+                    <PropertyRef Name="SAPOrigin"/>
+                    <PropertyRef Name="WorkitemID"/>
+                </Key>
+                <Property Name="SAPOrigin" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <Property Name="WorkitemID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="description" Type="Edm.String" MaxLength="255"/>
+                <NavigationProperty Name="headerDetails" Relationship="Quotation.WorkflowTaskCollection_headerDetails" FromRole="WorkflowTaskCollection" ToRole="HeaderDetails"/>
+            </EntityType>
+            <EntityType Name="HeaderDetails">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="workflowTaskSAPOrigin" Type="Edm.String" MaxLength="50"/>
+                <Property Name="workflowTaskID" Type="Edm.Guid"/>
+                <Property Name="documentNumber" Type="Edm.String" MaxLength="50"/>
+                <Property Name="createdDate" Type="Edm.DateTime" sap:display-format="Date"/>
+                <NavigationProperty Name="itemDetails" Relationship="Quotation.HeaderDetails_itemDetails" FromRole="HeaderDetails" ToRole="ItemDetails"/>
+                <NavigationProperty Name="notes" Relationship="Quotation.HeaderDetails_notes" FromRole="HeaderDetails" ToRole="Notes"/>
+                <NavigationProperty Name="attachments" Relationship="Quotation.HeaderDetails_attachments" FromRole="HeaderDetails" ToRole="Attachments"/>
+            </EntityType>
+            <EntityType Name="ItemDetails">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="headerID" Type="Edm.Guid"/>
+                <Property Name="itemDescription" Type="Edm.String" MaxLength="255"/>
+                <Property Name="quantity" Type="Edm.Int32"/>
+                <NavigationProperty Name="limits" Relationship="Quotation.ItemDetails_limits" FromRole="ItemDetails" ToRole="Limits"/>
+            </EntityType>
+            <EntityType Name="Notes">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="headerID" Type="Edm.Guid"/>
+                <Property Name="noteText" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="author" Type="Edm.String" MaxLength="100"/>
+                <Property Name="createdDate" Type="Edm.DateTimeOffset"/>
+            </EntityType>
+            <EntityType Name="Attachments">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="headerID" Type="Edm.Guid"/>
+                <Property Name="fileName" Type="Edm.String" MaxLength="255"/>
+                <Property Name="fileType" Type="Edm.String" MaxLength="50"/>
+                <Property Name="fileUrl" Type="Edm.String" MaxLength="500"/>
+            </EntityType>
+            <EntityType Name="Limits">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="itemID" Type="Edm.Guid"/>
+                <Property Name="maxLimit" Type="Edm.Decimal" Scale="2" Precision="15"/>
+                <Property Name="minLimit" Type="Edm.Decimal" Scale="2" Precision="15"/>
+            </EntityType>
+            <Association Name="Authors_books">
+                <End Role="Authors" Type="Quotation.Authors" Multiplicity="*"/>
+                <End Role="Books" Type="Quotation.Books" Multiplicity="*"/>
+            </Association>
+            <Association Name="Books_author">
+                <End Role="Books" Type="Quotation.Books" Multiplicity="*"/>
+                <End Role="Authors" Type="Quotation.Authors" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Authors">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Books">
+                        <PropertyRef Name="authorID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Books_publisher">
+                <End Role="Books" Type="Quotation.Books" Multiplicity="*"/>
+                <End Role="Publishers" Type="Quotation.Publishers" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Publishers">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Books">
+                        <PropertyRef Name="publisherID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Publishers_books">
+                <End Role="Publishers" Type="Quotation.Publishers" Multiplicity="*"/>
+                <End Role="Books" Type="Quotation.Books" Multiplicity="*"/>
+            </Association>
+            <Association Name="WorkflowTaskCollection_headerDetails">
+                <End Role="WorkflowTaskCollection" Type="Quotation.WorkflowTaskCollection" Multiplicity="*"/>
+                <End Role="HeaderDetails" Type="Quotation.HeaderDetails" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="HeaderDetails_itemDetails">
+                <End Role="HeaderDetails" Type="Quotation.HeaderDetails" Multiplicity="*"/>
+                <End Role="ItemDetails" Type="Quotation.ItemDetails" Multiplicity="*"/>
+            </Association>
+            <Association Name="HeaderDetails_notes">
+                <End Role="HeaderDetails" Type="Quotation.HeaderDetails" Multiplicity="*"/>
+                <End Role="Notes" Type="Quotation.Notes" Multiplicity="*"/>
+            </Association>
+            <Association Name="HeaderDetails_attachments">
+                <End Role="HeaderDetails" Type="Quotation.HeaderDetails" Multiplicity="*"/>
+                <End Role="Attachments" Type="Quotation.Attachments" Multiplicity="*"/>
+            </Association>
+            <Association Name="ItemDetails_limits">
+                <End Role="ItemDetails" Type="Quotation.ItemDetails" Multiplicity="*"/>
+                <End Role="Limits" Type="Quotation.Limits" Multiplicity="0..1"/>
+            </Association>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

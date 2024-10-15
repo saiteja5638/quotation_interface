@@ -1,0 +1,232 @@
+div#__panel1-content {
+    border: 0.5px solid black;
+    /* padding: 25px; */
+}
+
+div#application-quotationinterface-display-component---View1--_IDGenPanel1-content {
+    width: 1000px;
+    height: 70px !important;
+}
+div#application-quotationinterface-display-component---View1--idpiechart {
+    width: 400px !important;
+    height: 300px !important;
+}
+
+div#application-quotationinterface-display-component---View1--_IDGenHBox  {
+    display: flex;
+    gap: 10px;
+}
+div#application-quotationinterface-display-component---View1--_IDGenHBo5x  {
+    display: flex;
+    gap: 10px;
+}
+div#application-quotationinterface-display-component---View1--_IDGednHBo5x  {
+    display: flex;
+    gap: 10px;
+}
+div#application-quotationinterface-display-component---View1--_IDGedwwdnHBo5x  {
+    display: flex;
+    gap: 10px;
+}
+.sapSuiteUiCommonsChartContainerToolBarArea {
+    display: none;
+}
+bdi#application-quotationinterface-display-component---View1--_IDGenLabel-bdi {
+    font-size: 16px;
+}
+bdi#application-quotationinterface-display-component---View1--_IDGenLa8bel-bdi {
+    font-size: 16px;
+}
+bdi#application-quotationinterface-display-component---View1--_IDGsdenLa8bel-bdi {
+    font-size: 16px;
+}
+bdi#application-quotationinterface-display-component---View1--_IDGsdenLwdwqda8bel-bdi {
+    font-size: 16px;
+}
+span#application-quotationinterface-display-component---View1--_IDGenText3 {
+    font-size: 15px;
+}
+span#application-quotationinterface-display-component---View1--_IDGenText5 {
+     font-size: 15px;
+}
+span#application-quotationinterface-display-component---View1--_IDGenText6 {
+     font-size: 15px;
+}
+span#application-quotationinterface-display-component---View1--_IDGenText7 {
+    font-size: 15px;
+}
+span#application-quotationinterface-display-component---View1--_IDGenLa8bel {
+    padding-left: 55px;
+}
+span#application-quotationinterface-display-component---View1--_IDGsdenLa8bel-text {
+    padding-left: 85px;
+}
+span#application-quotationinterface-display-component---View1--_IDGsdenLwdwqda8bel-text {
+    padding-right: 2px;
+}
+div#application-quotationinterface-display-component---View1--_IDGenPanel1 {
+    width: 100% !important;
+    position: relative;
+    left: 20px;
+    top: -5px;
+}
+
+div#application-quotationinterface-display-component---View1--_IDGenFlexBox1 {
+    width: 98% !important;
+    border-radius: 10px;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+}
+div#application-quotationinterface-display-component---View1--_IDGenVBox {
+    display: flex;
+    /* align-items: stretch; */
+    justify-content: space-evenly;
+}
+/* g.v-m-legendGroup {
+    display: none;
+}
+g.v-m-title {
+    display: none;
+} */
+
+div#application-quotationinterface-display-component---View1--_IDGenPanel {
+    padding: 20px;
+}
+
+div#application-quotationinterface-display-component---View1--_IDGenPanel3 {
+    padding: 20px;
+}
+
+/* div#application-quotationinterface-display-component---View1--_IDGenFlexBox {
+    display: flex;
+    justify-content: space-evenly;
+}
+div#application-quotationinterface-display-component---View1--_IDGenVBox {
+    padding: 25px;
+    border: 0.5px solid green;
+    border-radius: 10px;
+    width: 15%;
+}
+div#application-quotationinterface-display-component---View1--_IDGenVBox1 {
+    padding: 25px;
+    border: 0.5px solid red;
+    border-radius: 10px;
+    width: 15%;
+}
+div#application-quotationinterface-display-component---View1--_IDGenVBox3 {
+    padding: 25px;
+    border: 0.5px solid black;
+    border-radius: 10px;
+    width: 15%;
+}
+div#application-quotationinterface-display-component---View1--_IDGenTitle3 {
+    color: green;
+    font-size: 35px;
+}
+div#application-quotationinterface-display-component---View1--_IDGenTitle10{
+    color: red;
+    font-size: 35px; 
+}
+div#application-quotationinterface-display-component---View1--_IDGenTitle12{
+    color: green;
+    font-size: 35px; 
+}
+div#application-quotationinterface-display-component---View1--_IDGenPanel2 {
+    padding: 20px;
+} */
+
+
+/* production */
+div#application-Object-DISPLAY-component---View1--_IDGenPanel {
+    padding: 15px;
+    border: 0.5 solid;
+}
+
+div#application-Object-DISPLAY-component---View1--_IDGenVBox {
+    position: relative;
+    width: 100%;
+    padding: 30px;
+}
+
+div#application-Object-DISPLAY-component---View1--_IDGenFlexBox1 {
+    width: 98% !important;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+div#application-Object-DISPLAY-component---View1--_IDGenPanel1 {
+    width: 100% !important;
+}
+div#application-Object-DISPLAY-component---View1--_IDGenPanel3 {
+    padding: 15px;
+}
+div#application-Object-DISPLAY-component---View1--_IDGenTitle3 {
+    font-size: 35px;
+    color: orange;
+    top: 10px;
+    position: relative;
+}
+div#application-Object-DISPLAY-component---View1--_IDGenPanel1-content {
+    width: 1000px;
+    height: 70px !important;
+}
+/* sdsd */
+div#application-Object-DISPLAY-component---View1--_IDGenPanel1 {
+    width: 100% !important;
+    position: relative;
+    left: 20px;
+    top: -5px;
+}
+
+div#application-Object-DISPLAY-component---View1--_IDGenFlexBox1 {
+    width: 98% !important;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+div#application-Object-DISPLAY-component---View1--_IDGenPanel {
+    padding: 20px;
+}
+
+div#application-Object-DISPLAY-component---View1--_IDGenPanel3 {
+    padding: 20px;
+}
+
+/* div#application-Object-DISPLAY-component---View1--_IDGenFlexBox {
+    display: flex;
+    justify-content: space-evenly;
+}
+div#application-Object-DISPLAY-component---View1--_IDGenVBox {
+    padding: 25px;
+    border: 0.5px solid green;
+    border-radius: 10px;
+    width: 15%;
+}
+div#application-Object-DISPLAY-component---View1--_IDGenVBox1 {
+    padding: 25px;
+    border: 0.5px solid red;
+    border-radius: 10px;
+    width: 15%;
+}
+div#application-Object-DISPLAY-component---View1--_IDGenVBox3 {
+    padding: 25px;
+    border: 0.5px solid black;
+    border-radius: 10px;
+    width: 15%;
+}
+div#application-Object-DISPLAY-component---View1--_IDGenTitle3 {
+    color: green;
+    font-size: 35px;
+}
+div#application-Object-DISPLAY-component---View1--_IDGenTitle10{
+    color: red;
+    font-size: 35px; 
+}
+div#application-Object-DISPLAY-component---View1--_IDGenTitle12{
+    color: green;
+    font-size: 35px; 
+} */
+div#application-Object-DISPLAY-component---View1--_IDGenPanel2 {
+    padding: 20px;
+}

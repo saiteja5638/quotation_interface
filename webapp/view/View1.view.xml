@@ -1,0 +1,335 @@
+<mvc:View
+    xmlns:f="sap.f"
+    controllerName="quotationinterface.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:vizFeeds="sap.viz.ui5.controls.common.feeds"
+    displayBlock="true"
+    xmlns:viz.data="sap.viz.ui5.data"
+    
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:chart="sap.suite.ui.commons"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+        titleAlignment="Center"
+        titleLevel="H4"
+    >
+        <Panel
+            id="_IDGenPanel"
+            headerText="Data Preview"
+        >
+            <FlexBox
+                id="_IDGenFlexBox1"
+                backgroundDesign="Solid"
+                class="sapUiSmallMargin"
+            >
+                <VBox id="_IDGenVBox">
+                    <HBox id="_IDGenHBox">
+                        <Label
+                            id="_IDGenLabel"
+                            text="Quotation number :"
+                        />
+                        <Text
+                            id="_IDGenText3"
+                            text=""
+                        />
+                    </HBox>
+                    <HBox id="_IDGenHBo5x">
+                        <Label
+                            id="_IDGenLa8bel"
+                            text="Customer :"
+                        />
+                        <Text
+                            id="_IDGenText5"
+                            text=""
+                        />
+                    </HBox>
+                    <HBox id="_IDGednHBo5x">
+                        <Label
+                            id="_IDGsdenLa8bel"
+                            text="Plant :"
+                        />
+                        <Text
+                            id="_IDGenText6"
+                            text=""
+                        />
+                    </HBox>
+                    <HBox id="_IDGedwwdnHBo5x">
+                        <Label
+                            id="_IDGsdenLwdwqda8bel"
+                            text="Sales Orgnaziation :"
+                        />
+                        <Text
+                            id="_IDGenText7"
+                            text=""
+                        />
+                    </HBox>
+                </VBox>
+                <VBox id="_IDGedwnVBox1">
+                    <chart:ChartContainer id="chartContainer">
+                        <chart:ChartContainerContent
+                            id="_IDGenChartContainerContent1"
+                        >
+                            <chart:content>
+                                <viz:VizFrame
+                                    id="idpiechart"
+                                    width="auto"
+                                    uiConfig="{applicationSet:'fiori'}"
+                                    vizType="pie"
+                                    vizProperties="{
+                    plotArea:{
+                        dataLabel:{visible: true},
+                         formatString: [['0.00%']] 
+                    },
+                    title : {text:'Success and Rejection Prediction'}
+                }"
+                                >
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset
+                                            id="flattenData"
+                                            data="{IceCreamModel>/Items}"
+                                        >
+                                            <viz.data:dimensions>
+                                                <viz.data:DimensionDefinition
+                                                    id="_IDGenDimensionDefinition1"
+                                                    name="Category"
+                                                    value="{IceCreamModel>Category}"
+                                                />
+                                            </viz.data:dimensions>
+                                            <viz.data:measures>
+                                                <viz.data:MeasureDefinition
+                                                    id="_IDGenMeasureDefinition1"
+                                                    name="Percentage"
+                                                    value="{IceCreamModel>Percentage}"
+                                                />
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem
+                                            id="_IDGenFeedItem1"
+                                            uid="size"
+                                            type="Measure"
+                                            values="Percentage"
+                                        />
+                                        <viz.feeds:FeedItem
+                                            id="_IDGenFeedIwdwtem2"
+                                            uid="color"
+                                            type="Dimension"
+                                            values="Category"
+                                        />
+                                    </viz:feeds>
+                                </viz:VizFrame>
+                            </chart:content>
+                        </chart:ChartContainerContent>
+                    </chart:ChartContainer>
+                </VBox>
+            </FlexBox>
+
+            <Table
+                id="_IDGenTable"
+                items="{/Z_QUOTATION}"
+                mode="MultiSelect"
+            >
+                <infoToolbar>
+                    <Toolbar id="_IDGenToolbar1">
+                        <ToolbarSpacer id="_IDGenToolbarSpacer" />
+                        <Button
+                            id="_IDGenButton"
+                            icon="sap-icon://synchronize"
+                            press="onRefresh"
+                        />
+                        <Button
+                            id="_IDGenButton1"
+                            text="Run Prediction"
+                            type="Emphasized"
+                            press="onVaildateUserInputs"
+                            icon="sap-icon://business-objects-experience"
+                        />
+                        <Button
+                            id="_IDGenButton2"
+                            text="Import"
+                            type="Emphasized"
+                            press="onUpdateValues"
+                            icon="sap-icon://download"
+                        />
+                    </Toolbar>
+                </infoToolbar>
+                <columns>
+                    <Column
+                        id="_IDGenColumn1"
+                        hAlign="Center"
+                    >
+                        <Title
+                            id="_IDGenTitle1"
+                            text="Item"
+                        />
+                    </Column>
+                    <Column
+                        id="_IDGenColumn4"
+                        hAlign="Center"
+                    >
+                        <Title
+                            id="_IDGenTitle6"
+                            text="Material"
+                        />
+                    </Column>
+                    <Column
+                        id="_IDGenColumn5"
+                        hAlign="Center"
+                    >
+                        <Title
+                            id="_IDGenTitle7"
+                            text="Net Value"
+                        />
+                    </Column>
+                    <Column
+                        id="_IDGenColumn6"
+                        hAlign="Center"
+                    >
+                        <Title
+                            id="_IDGenTitle8"
+                            text="Quantity"
+                        />
+                    </Column>
+                    <Column
+                        id="_IDGenCdfvfdvolumn2"
+                        hAlign="Center"
+                    >
+                        <Title
+                            id="_IDGenTidvdtle"
+                            text="Success"
+                        />
+                    </Column>
+                    <Column
+                        id="_IDGenCodvdlumn3"
+                        hAlign="Center"
+                    >
+                        <Title
+                            id="_IDGenTdvfdvitle2"
+                            text="Failure"
+                        />
+                    </Column>
+                    <Column
+                        id="_IDGenColcumn7"
+                        hAlign="Center"
+                    >
+                        <Title
+                            id="_IDGenTitvdfdvle3"
+                            text="Status"
+                        />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem">
+                        <Text
+                            id="_IDGenText4"
+                            text="{POSNR}"
+                        />
+                        <Text
+                            id="_IDGenText8"
+                            text="{MATNR}"
+                        />
+                        <Input
+                            id="_IDGenText"
+                            value="{NETWR}"
+                            width="50%"
+                            textAlign="Center"
+                        />
+                        <Input
+                            id="_IDGenText1"
+                            width="50%"
+                            value="{KWMENG}"
+                            textAlign="Center"
+                        />
+                        <Text id="_IDGenTitle2"  class="ddvsdvsdvds" text="{Success}"  ></Text>
+                         <Text id="_IDGenTitle3"  text="{Failure}" ></Text>
+                          <Text id="_IDGenTitle4"  text="{Status}" ></Text>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+
+     
+        <Panel
+            id="_IDGenPanel3"
+            expand="true"
+            expandable="true"
+            expandAnimation="true"
+            expanded="true"
+            headerText="Analysis"
+        >
+        <viz:VizFrame id="_IDGenVizFrame1"
+    width="100%"
+    height="480px"
+    uiConfig="{applicationSet:'fiori'}"
+             vizProperties="{
+    
+                    title : {text:''}
+                }"
+    vizType="column">
+
+    <!-- Correct Dataset -->
+    <viz:dataset>
+        <viz.data:FlattenedDataset id="_IDGenFlattenedDataset" data="{/data}">
+            <viz.data:dimensions>
+                <viz.data:DimensionDefinition id="_IDGenDimensionDefinition" name="Material Description" value="{MATNR}" />
+            </viz.data:dimensions>
+            <viz.data:measures>
+                <viz.data:MeasureDefinition id="_IDGenMeasureDefinition" name="Material" value="{ZMATNR}" />
+                <viz.data:MeasureDefinition id="_IDGenMeasureDefinition2" name="Customer" value="{ZKUNNR}" />
+                 <viz.data:MeasureDefinition id="_IDGenMeasureDefinition3" name="Sales Organisation" value="{ZVKORG}" />
+                  <viz.data:MeasureDefinition id="_IDGenMeasureDefinition4" name="Price" value="{NETWR}" />
+                   <viz.data:MeasureDefinition id="_IDGenMeasureDefzzxinition4" name="Plant" value="{ZWERKS}" />
+                  
+            </viz.data:measures>
+        </viz.data:FlattenedDataset>
+    </viz:dataset>
+    <viz:feeds>
+       
+        <viz.feeds:FeedItem
+            id="valueAxisFeed1"
+            uid="valueAxis"
+            type="Measure"
+            values="Material" />
+        
+
+        <viz.feeds:FeedItem
+            id="valueAxisFeed2"
+            uid="valueAxis"
+            type="Measure"
+            values="Customer" />
+                <viz.feeds:FeedItem
+            id="valueAxisFefded2"
+            uid="valueAxis"
+            type="Measure"
+            values="Sales Organisation" />    
+                        <viz.feeds:FeedItem
+            id="valueAxisdcssFefded2"
+            uid="valueAxis"
+            type="Measure"
+            values="Price" />    
+                                <viz.feeds:FeedItem
+            id="valueAxisdcsaaasFefded2"
+            uid="valueAxis"
+            type="Measure"
+            values="Plant" /> 
+
+        <viz.feeds:FeedItem
+            
+            id="categoryAxisFeed"
+            uid="categoryAxis"
+            type="Dimension"
+            values="Material Description" />
+    </viz:feeds>
+
+</viz:VizFrame>
+
+                 
+        </Panel>
+    </Page>
+</mvc:View>
