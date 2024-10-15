@@ -278,9 +278,15 @@
                 uiConfig="{applicationSet:'fiori'}"
                 vizProperties="{
                plotArea: {
-                colorPalette: ['#f7f728', '#de7016', '#3c78b0', '#98f5eb', '#B2912F']
+                colorPalette: ['#f7f728', '#323fd1', '#3c78b0', '#98f5eb', '#B2912F']
             },
-                    title : {text:''}
+                    title : {text:''},
+                                    scale: {
+                    fixedRange: true,   
+                    minValue: 0,
+                    maxValue: 100      
+                }
+                    
                 }"
                 vizType="column"
             >
@@ -313,11 +319,11 @@
                                 name="Sales Organisation"
                                 value="{ZVKORG}"
                             />
-                            <!-- <viz.data:MeasureDefinition
+                            <viz.data:MeasureDefinition
                                 id="_IDGenMeasureDefinition4"
                                 name="Price"
                                 value="{NETWR}"
-                            /> -->
+                            />
                             <viz.data:MeasureDefinition
                                 id="_IDGenMeasureDefzzxinition4"
                                 name="Plant"
@@ -346,12 +352,12 @@
                         type="Measure"
                         values="Sales Organisation"
                     />
-                    <!-- <viz.feeds:FeedItem
+                    <viz.feeds:FeedItem
                         id="valueAxisdcssFefded2"
                         uid="valueAxis"
                         type="Measure"
                         values="Price"
-                    /> -->
+                    />
                     <viz.feeds:FeedItem
                         id="valueAxisdcsaaasFefded2"
                         uid="valueAxis"
