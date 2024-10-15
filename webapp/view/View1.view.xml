@@ -133,6 +133,7 @@
                 id="_IDGenTable"
                 items="{/Z_QUOTATION}"
                 mode="MultiSelect"
+                alternateRowColors="true"
             >
                 <infoToolbar>
                     <Toolbar id="_IDGenToolbar1">
@@ -140,7 +141,7 @@
                         <Button
                             id="_IDGenButton"
                             icon="sap-icon://synchronize"
-                            press="formatStatusColor"
+                            press="onRefresh"
                         />
                         <Button
                             id="_IDGenButton1"
@@ -151,7 +152,7 @@
                         />
                         <Button
                             id="_IDGenButton2"
-                            text="Import"
+                            text="Export"
                             type="Emphasized"
                             press="onUpdateValues"
                             icon="sap-icon://download"
@@ -267,10 +268,7 @@
 
         <Panel
             id="_IDGenPanel3"
-            expand="true"
-            expandable="true"
-            expandAnimation="true"
-            expanded="true"
+       
             headerText="Analysis"
         >
             <viz:VizFrame

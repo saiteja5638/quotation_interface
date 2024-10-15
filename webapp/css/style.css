@@ -233,8 +233,14 @@ div#application-Object-DISPLAY-component---View1--_IDGenPanel2 {
 
 .statusSuccess {
     color: green;
+    font-size: 15px;
+    font-weight: 750;
+    font-family: sans-serif;
 }
 
 .statusReject {
     color: red;
+    font-size: 15px;
+    font-weight: 750;
+    font-family: sans-serif;
 }

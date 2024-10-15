@@ -191,7 +191,7 @@ sap.ui.define([
                     }
                     
                 } else {
-                    alert("Select The Quotation")
+                    alert("Select The Item ")
                 }
 
             },
