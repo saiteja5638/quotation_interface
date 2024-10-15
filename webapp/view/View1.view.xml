@@ -278,7 +278,7 @@
                 uiConfig="{applicationSet:'fiori'}"
                 vizProperties="{
                plotArea: {
-                colorPalette: ['#5CBAE6', '#FF8000', '#60BD68', '#F15854', '#B2912F']
+                colorPalette: ['#f7f728', '#de7016', '#3c78b0', '#98f5eb', '#B2912F']
             },
                     title : {text:''}
                 }"

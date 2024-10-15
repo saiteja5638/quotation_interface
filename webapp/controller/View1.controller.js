@@ -81,8 +81,11 @@ sap.ui.define([
                 let table_items = that.byId("_IDGenTable").getItems()
                 table_items.forEach(element => {
                     let Res_obj = element.getBindingContext().getObject();
-                    Res_obj['NETWR'] = element.getCells()[6].getValue();
-                    Res_obj['KWMENG'] = element.getCells()[7].getValue();
+                    Res_obj['NETWR'] = element.getCells()[2].getValue();
+                    Res_obj['KWMENG'] = element.getCells()[3].getValue();
+                    delete Res_obj.Success
+                    delete Res_obj.Failure
+                    delete Res_obj.Status
 
                     const sQuotationKey = `ZQUOTATION='${Res_obj.ZQUOTATION}',POSNR='${Res_obj.POSNR}'`;
 
