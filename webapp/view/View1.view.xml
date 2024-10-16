@@ -322,7 +322,7 @@
                             <viz.data:MeasureDefinition
                                 id="_IDGenMeasureDefinition4"
                                 name="Price"
-                                value="{NETWR}"
+                                value="{ZNETWRP}"
                             />
                             <viz.data:MeasureDefinition
                                 id="_IDGenMeasureDefzzxinition4"
