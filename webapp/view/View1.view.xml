@@ -236,7 +236,7 @@
                         />
                         <Input
                             id="_IDGenText"
-                            value="{NETWR}"
+                            value="{NETPR}"
                             width="50%"
                             textAlign="Center"
                         />

@@ -10,20 +10,6 @@ sap.ui.define([
             onInit: function () {
                 that = this;
 
-                // var oData = {
-                //     data: [
-                //         { Country: "USA", Population: 331, GDP: 21 },
-                //         { Country: "China", Population: 1441, GDP: 14 },
-                //         { Country: "India", Population: 1380, GDP: 3 },
-                //         { Country: "Germany", Population: 83, GDP: 4 },
-                //         { Country: "UK", Population: 67, GDP: 2.8 }
-                //     ]
-                // };
-    
-                
-                // var oModel = new JSONModel(oData);
-                // this.getView().setModel(oModel);
-
                 this._setIceCreamModel()
                 that._SetHeaderData()
                 that.onRefresh()
@@ -32,16 +18,16 @@ sap.ui.define([
 
                 let get_table_items = that.byId("_IDGenTable").getItems()
                 get_table_items.forEach(i=>{
-                    if (i.getCells()[6].getText()=="Rejected") {
+                    if (i.getCells()[6].getText() == "Rejected") {
                         i.getCells()[6].addStyleClass("statusReject")
-                        
-                    } else {
-                        i.getCells()[6].addStyleClass("statusSuccess")
+
                     }
+                    if (i.getCells()[6].getText() == 'Success') {
+                        i.getCells()[6].addStyleClass("statusSuccess")
+                        }
                     
                 })
                 
-         
             },
             _setIceCreamModel: function () {
 
@@ -81,7 +67,7 @@ sap.ui.define([
                 let table_items = that.byId("_IDGenTable").getItems()
                 table_items.forEach(element => {
                     let Res_obj = element.getBindingContext().getObject();
-                    Res_obj['NETWR'] = element.getCells()[2].getValue();
+                    Res_obj['NETPR'] = element.getCells()[2].getValue();
                     Res_obj['KWMENG'] = element.getCells()[3].getValue();
                     delete Res_obj.Success
                     delete Res_obj.Failure
@@ -113,7 +99,7 @@ sap.ui.define([
                                     KUNNR: i.KUNNR,
                                     VKORG: i.VKORG,
                                     MATNR: i.MATNR,
-                                    NETWR: i.NETWR,
+                                    NETPR: i.NETPR,
                                     KWMENG: i.KWMENG
                                 },
                                 success: function (oData, response) {
@@ -208,7 +194,7 @@ sap.ui.define([
                             KUNNR: i.getBindingContext().getObject().KUNNR,
                             VKORG: i.getBindingContext().getObject().VKORG,
                             MATNR: i.getBindingContext().getObject().MATNR,
-                            NETWR: i.getCells()[2].getValue(),
+                            NETPR: i.getCells()[2].getValue(),
                             KWMENG: i.getCells()[3].getValue()
                         },
                         success: function (oData, response) {
