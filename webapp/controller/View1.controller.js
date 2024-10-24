@@ -1,33 +1,84 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/Device",
-    "sap/ui/model/json/JSONModel"
+    "sap/ui/model/json/JSONModel",
+    'sap/ui/core/Fragment'
 ],
-    function (Controller, Device, JSONModel) {
+    function (Controller, Device, JSONModel,Fragment) {
         "use strict";
         var that;
         return Controller.extend("quotationinterface.controller.View1", {
             onInit: function () {
                 that = this;
+                if (!that.create) {
+
+                    that.create = sap.ui.xmlfragment("quotationinterface.view.create", that);
+                }
+               
+      
+                var oVizFrame = this.oVizFrame = this.getView().byId("_IDGenVizFrame1");
+                const socket = new WebSocket("wss://060a0275trial-dev-quotation-capm-srv.cfapps.us10-001.hana.ondemand.com");
+
+                socket.onopen = function () {
+                    console.log("WebSocket connection established");
+                };
+
+                socket.onmessage = function (event) {
+                    const data = JSON.parse(event.data);
+
+                    // Handle the createQuotation event
+                    if (data.action === 'ApproveQuotation') {
+                        this._setIceCreamModel()
+                        that._SetHeaderData()
+                        that.onRefresh()
+                        that.formatStatusColor()
+                    }
+
+                }.bind(this);
+
 
                 this._setIceCreamModel()
                 that._SetHeaderData()
                 that.onRefresh()
+                var oPopOver = this.getView().byId("idPopOver");
+                oPopOver.connect(oVizFrame.getVizUid());
+                // oPopOver.setFormatString(formatPattern.STANDARDFLOAT);
+            },
+            onDevide:function(oEvent)
+            {
+                var oButton = oEvent.getSource(),
+				oView = this.getView();
+
+			// create popover
+			if (!this._pPopover) {
+				this._pPopover = Fragment.load({
+					id: oView.getId(),
+					name: "quotationinterface.view.create",
+					controller: this
+				}).then(function(oPopover) {
+					oView.addDependent(oPopover);
+					// oPopover.bindElement("/ProductCollection/0");
+					return oPopover;
+				});
+			}
+			this._pPopover.then(function(oPopover) {
+				oPopover.openBy(oButton);
+			});
             },
             formatStatusColor: function () {
 
                 let get_table_items = that.byId("_IDGenTable").getItems()
-                get_table_items.forEach(i=>{
+                get_table_items.forEach(i => {
                     if (i.getCells()[6].getText() == "Rejected") {
                         i.getCells()[6].addStyleClass("statusReject")
 
                     }
                     if (i.getCells()[6].getText() == 'Success') {
                         i.getCells()[6].addStyleClass("statusSuccess")
-                        }
-                    
+                    }
+
                 })
-                
+
             },
             _setIceCreamModel: function () {
 
@@ -44,19 +95,51 @@ sap.ui.define([
             _SetHeaderData: function () {
                 that.getOwnerComponent().getModel().read("/Z_QUOTATION", {
                     success: function (response) {
-                        let response_data = response.results;
+                      let  response_data = []
+                        
+                        response.results.forEach(i=>{
+                            i['Combination_field'] = `${i.MATNR} - ${i.ZMATAVGK}`
+                            response_data.push(i)
+                        })
 
                         that.byId("_IDGenText3").setText(response_data[0].ZQUOTATION)
                         that.byId("_IDGenText5").setText(response_data[0].KUNNR)
                         that.byId("_IDGenText6").setText(response_data[0].WERKS)
                         that.byId("_IDGenText7").setText(response_data[0].VKORG)
 
-                        let oData ={
-                            data:response_data
+
+                        // Setting the Column Chart
+
+                        let oData = {
+                            data: response_data
                         }
 
                         var oModel = new JSONModel(oData);
                         that.getView().setModel(oModel);
+                        if (that.byId("_IDGenVizFrame1")) {
+
+                            let oVizFrame = that.byId("_IDGenVizFrame1");
+                            // Calculate dynamic scale values here
+                            var dynamicMinValue = 0;  // Set this based on your data or logic
+                            var dynamicMaxValue = 100; // Set this based on your data or logic
+
+                            // Update the VizFrame properties to set the dynamic scale
+                            oVizFrame.setVizProperties({
+                                valueAxis: {
+                                    scale: {
+                                        fixedRange: true, // Keep the fixed range true for setting custom scale
+                                        minValue: dynamicMinValue, // Use the calculated dynamic min value
+                                        maxValue: dynamicMaxValue  // Use the calculated dynamic max value
+                                    }
+                                },
+                                plotArea: {
+                                    dataLabel: {
+                                        visible: true // To ensure data labels are still visible
+                                    }
+                                }
+                            });
+                        }
+
                     },
                     error: function (err) {
                         console.log(err)
@@ -91,10 +174,10 @@ sap.ui.define([
                 that.getOwnerComponent().getModel().read("/Z_QUOTATION", {
                     success: function (response) {
                         that.quotationresponselength = response.results.length;
-                        response.results.forEach(i=>{
+                        response.results.forEach(i => {
 
                             that.getOwnerComponent().getModel().callFunction("/createQuotation", {
-                                method: "GET",  
+                                method: "GET",
                                 urlParameters: {
                                     KUNNR: i.KUNNR,
                                     VKORG: i.VKORG,
@@ -109,17 +192,16 @@ sap.ui.define([
                                     i['Status'] = result_object.status;
 
                                     that.PredicationResponse.push(i)
-                                    if(that.PredicationResponse.length == that.quotationresponselength)
-                                    {
-                                        
+                                    if (that.PredicationResponse.length == that.quotationresponselength) {
+
                                         let oModel = new sap.ui.model.json.JSONModel({
                                             Z_QUOTATION: that.PredicationResponse
                                         })
-                
+
                                         that.byId("_IDGenTable").setModel(oModel)
                                         that.formatStatusColor()
                                         that.onUpdatePieChart(that.PredicationResponse)
-                
+
                                     }
 
                                 },
@@ -127,7 +209,7 @@ sap.ui.define([
                                     console.log("Function Import Error", oError);
                                 }
                             });
-                               
+
                         })
                     },
                     error: function (err) {
@@ -135,20 +217,18 @@ sap.ui.define([
                     }
                 })
             },
-            onUpdatePieChart:function(res125)
-            {
+            onUpdatePieChart: function (res125) {
                 that.Success = "0.00";
                 that.Failure = "0.00";
-                
-                res125.forEach((i,index) =>{
-                    that.Success = parseFloat(that.Success) +  parseFloat(i.Success)
-                    that.Failure =  parseFloat(that.Failure) +  parseFloat(i.Failure)
 
-                    let a = (that.Success/ that.quotationresponselength)
-                    let b = (that.Failure/ that.quotationresponselength)
+                res125.forEach((i, index) => {
+                    that.Success = parseFloat(that.Success) + parseFloat(i.Success)
+                    that.Failure = parseFloat(that.Failure) + parseFloat(i.Failure)
 
-                    if(that.PredicationResponse.length == (index + 1) )
-                    {
+                    let a = (that.Success / that.quotationresponselength)
+                    let b = (that.Failure / that.quotationresponselength)
+
+                    if (that.PredicationResponse.length == (index + 1)) {
                         var pieData = {
                             Items: [
                                 { Category: "Success", Percentage: a },
@@ -162,23 +242,22 @@ sap.ui.define([
             },
             onVaildateUserInputs: function () {
 
-                if (that.byId("_IDGenTable").getSelectedItems().length>0) {
+                if (that.byId("_IDGenTable").getSelectedItems().length > 0) {
 
                     let count = 0;
 
-                    that.byId("_IDGenTable").getSelectedItems().forEach(i=>{
-                        if(!(parseInt(i.getCells()[2].getValue())>=0 && parseInt(i.getCells()[3].getValue()) >=0) )
-                        {
+                    that.byId("_IDGenTable").getSelectedItems().forEach(i => {
+                        if (!(parseInt(i.getCells()[2].getValue()) >= 0 && parseInt(i.getCells()[3].getValue()) >= 0)) {
                             count = count + 1;
                         }
                     })
 
                     if (count == 0) {
-                       that.onSubmit()
+                        that.onSubmit()
                     } else {
                         alert("Please Check the " + count + "Quotion consisting of negative values")
                     }
-                    
+
                 } else {
                     alert("Select The Item ")
                 }
@@ -186,7 +265,7 @@ sap.ui.define([
             },
             onSubmit: function () {
                 that.byId("_IDGenTable").setBusy(true)
-                that.byId("_IDGenTable").getSelectedItems().forEach((i,index) =>{
+                that.byId("_IDGenTable").getSelectedItems().forEach((i, index) => {
 
                     that.getOwnerComponent().getModel().callFunction("/createQuotation", {
                         method: "GET",  // or "POST" based on your function import
@@ -206,12 +285,11 @@ sap.ui.define([
                             item.Success = result_object.success_percentage;
                             item.Failure = result_object.failure_percentage;
 
-                            if(that.byId("_IDGenTable").getSelectedItems().length == index +1)
-                            {
+                            if (that.byId("_IDGenTable").getSelectedItems().length == index + 1) {
                                 let oModel = new sap.ui.model.json.JSONModel({
                                     Z_QUOTATION: that.PredicationResponse
                                 })
-        
+
                                 that.byId("_IDGenTable").setModel(oModel)
                                 that.formatStatusColor()
                                 that.onUpdatePieChart(that.PredicationResponse)

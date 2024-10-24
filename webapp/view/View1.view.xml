@@ -225,7 +225,7 @@
                     </Column>
                 </columns>
                 <items>
-                    <ColumnListItem id="_IDGenColumnListItem">
+                    <ColumnListItem id="_IDGenColumnListItem" >
                         <Text
                             id="_IDGenText4"
                             text="{POSNR}"
@@ -273,15 +273,16 @@
         >
             <viz:VizFrame
                 id="_IDGenVizFrame1"
+             
                 width="100%"
                 height="480px"
                 uiConfig="{applicationSet:'fiori'}"
                 vizProperties="{
                plotArea: {
-                colorPalette: ['#f7f728', '#323fd1', '#3c78b0', '#98f5eb', '#B2912F']
+                colorPalette: [ '#98f5eb', '#B2912F']
             },
                     title : {text:''},
-                                    scale: {
+            scale: {
                     fixedRange: true,   
                     minValue: 0,
                     maxValue: 100      
@@ -300,25 +301,10 @@
                             <viz.data:DimensionDefinition
                                 id="_IDGenDimensionDefinition"
                                 name="Material Description"
-                                value="{MATNR}"
+                                value="{Combination_field}"
                             />
                         </viz.data:dimensions>
                         <viz.data:measures>
-                            <viz.data:MeasureDefinition
-                                id="_IDGenMeasureDefinition"
-                                name="Material"
-                                value="{ZMATNR}"
-                            />
-                            <viz.data:MeasureDefinition
-                                id="_IDGenMeasureDefinition2"
-                                name="Customer"
-                                value="{ZKUNNR}"
-                            />
-                            <viz.data:MeasureDefinition
-                                id="_IDGenMeasureDefinition3"
-                                name="Sales Organisation"
-                                value="{ZVKORG}"
-                            />
                             <viz.data:MeasureDefinition
                                 id="_IDGenMeasureDefinition4"
                                 name="Price"
@@ -333,25 +319,6 @@
                     </viz.data:FlattenedDataset>
                 </viz:dataset>
                 <viz:feeds>
-                    <viz.feeds:FeedItem
-                        id="valueAxisFeed1"
-                        uid="valueAxis"
-                        type="Measure"
-                        values="Material"
-                    />
-
-                    <viz.feeds:FeedItem
-                        id="valueAxisFeed2"
-                        uid="valueAxis"
-                        type="Measure"
-                        values="Customer"
-                    />
-                    <viz.feeds:FeedItem
-                        id="valueAxisFefded2"
-                        uid="valueAxis"
-                        type="Measure"
-                        values="Sales Organisation"
-                    />
                     <viz.feeds:FeedItem
                         id="valueAxisdcssFefded2"
                         uid="valueAxis"
@@ -372,6 +339,9 @@
                         values="Material Description"
                     />
                 </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver"></viz:Popover>
+                </viz:dependents>
             </viz:VizFrame>
         </Panel>
     </Page>

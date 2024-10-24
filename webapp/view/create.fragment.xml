@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		id="myPopover"
+        contentWidth="563px"
+        contentHeight="250px"
+		title="Na"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		
+		>
+	
+	</Popover>
+</core:FragmentDefinition>
