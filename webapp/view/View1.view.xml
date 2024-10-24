@@ -134,6 +134,8 @@
                 items="{/Z_QUOTATION}"
                 mode="MultiSelect"
                 alternateRowColors="true"
+                selectionChange="onSelect_Item"
+                
             >
                 <infoToolbar>
                     <Toolbar id="_IDGenToolbar1">
@@ -225,7 +227,7 @@
                     </Column>
                 </columns>
                 <items>
-                    <ColumnListItem id="_IDGenColumnListItem" >
+                    <ColumnListItem id="_IDGenColumnListItem" type="Active" >
                         <Text
                             id="_IDGenText4"
                             text="{POSNR}"
@@ -239,17 +241,20 @@
                             value="{NETPR}"
                             width="50%"
                             textAlign="Center"
+                              editable="false"
                         />
                         <Input
                             id="_IDGenText1"
                             width="50%"
                             value="{KWMENG}"
                             textAlign="Center"
+                            editable="false"
                         />
                         <Text
                             id="_IDGenTitle2"
                             class="statusSuccess"
                             text="{Success}"
+                            
                         />
                         <Text
                             id="_IDGenTitle3"

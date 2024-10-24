@@ -98,7 +98,7 @@ sap.ui.define([
                       let  response_data = []
                         
                         response.results.forEach(i=>{
-                            i['Combination_field'] = `${i.MATNR} - ${i.ZMATAVGK}`
+                            i['Combination_field'] = `${i.MATNR} - ${i.ZMATAVG}`
                             response_data.push(i)
                         })
 
@@ -294,6 +294,7 @@ sap.ui.define([
                                 that.formatStatusColor()
                                 that.onUpdatePieChart(that.PredicationResponse)
                                 that.byId("_IDGenTable").setBusy(false)
+                                that.onFlaseEditable()
                             }
                         },
                         error: function (oError) {
@@ -303,8 +304,34 @@ sap.ui.define([
                     });
 
                 })
+            },
+            onSelect_Item:function()
+            {
+                if (that.byId("_IDGenTable").getSelectedItems().length>0) {
 
+                    that.byId("_IDGenTable").getSelectedItems().forEach(i=>{
+                        i.getCells()[2].setEditable(true)
+                        i.getCells()[3].setEditable(true)
+                    })
+                    
+                } else {
+                    that.byId("_IDGenTable").getItems().forEach(i=>{
+                        if ((i.getCells()[2].mProperties.editable && i.getCells()[3].mProperties.editable)) {
+                            i.getCells()[2].setEditable(false)
+                            i.getCells()[3].setEditable(false)
+                        }
+                    })
+                }
 
+            },
+            onFlaseEditable:function()
+            {
+                that.byId("_IDGenTable").getItems().forEach(i=>{
+                    if ((i.getCells()[2].mProperties.editable && i.getCells()[3].mProperties.editable)) {
+                        i.getCells()[2].setEditable(false)
+                        i.getCells()[3].setEditable(false)
+                    }
+                })
             }
         });
     });
