@@ -17,7 +17,7 @@ server:
           url: https://ui5.sap.com
         backend:
           - path: /v2
-            url: https://060a0275trial-dev-quotation-capm-srv.cfapps.us10-001.hana.ondemand.com
+            url: https://12fabaf7trial-dev-quotation-capm-srv.cfapps.us10-001.hana.ondemand.com
             destination: quotation_capm
     - name: fiori-tools-appreload
       afterMiddleware: compression

@@ -31,7 +31,7 @@ server:
         ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
         backend:
           - path: /v2
-            url: https://060a0275trial-dev-quotation-capm-srv.cfapps.us10-001.hana.ondemand.com
+            url: https://12fabaf7trial-dev-quotation-capm-srv.cfapps.us10-001.hana.ondemand.com
             destination: quotation_capm
     - name: sap-fe-mockserver
       beforeMiddleware: csp
